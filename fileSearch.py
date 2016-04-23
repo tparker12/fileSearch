@@ -36,20 +36,20 @@ def askdirectory():
 
 # /home/tanner/Desktop/firstFolder
 
-print "This script is meant for scrubbing files of a specified type and listing them."
-print "It also allows you to copy the files after collecting them into a folder of your choice."
+print ("This script is meant for scrubbing files of a specified type and listing them.")
+print ("It also allows you to copy the files after collecting them into a folder of your choice.")
 
-print "Please enter a starting directory.."
+print ("Please enter a starting directory..")
 directory = askdirectory()
 #directory = raw_input()
 
-print 'For image files then press 1'
-print 'For Word files then press 2'
-print 'For video files then press 3'
-print 'For audio files then press 4'
-print 'For .jpg files then press 5'
-print 'For .txt files then press 6'
-choice = int(raw_input('Please enter your choice: '))
+print ('For image files then press 1')
+print ('For Word files then press 2')
+print ('For video files then press 3')
+print ('For audio files then press 4')
+print ('For .jpg files then press 5')
+print ('For .txt files then press 6')
+choice = int(input('Please enter your choice: '))
 
 # variables to hold custom paths...this is meant to be used later on.
 desktop = '/home/tanner/Desktop/'
@@ -90,18 +90,18 @@ for root, dirnames, filenames in os.walk(directory):
             if filename.endswith('.txt'):
                 matches.append(os.path.join(root, filename))
         else:
-            print 'You did not press a specified number.'
+            print ('You did not press a specified number.')
             sys.exit()
 # if the list is empty say so..these are new changes.
 if len(matches) == 0:
-    print len(matches)
-    print 'There were no files of the specified type within the directory you gave.'
+    print (len(matches))
+    print ('There were no files of the specified type within the directory you gave.')
 else:
-    print matches
-    print "Would you like to copy these to a new folder? Y or N?"
-    answer = raw_input()
+    print (matches)
+    print ("Would you like to copy these to a new folder? Y or N?")
+    answer = input()
     if answer == 'y' or 'Y':
-        print 'Specify directory path to move files into.'
+        print ('Specify directory path to move files into.')
         direc = askdirectory()
         #print 'Note: The folder you specify will be created on the Desktop.'
         #newDir = raw_input()
@@ -113,8 +113,8 @@ else:
         # loops through the list of matches and copy's them to the new folder.
         for x in matches:
             copyFile(x, direc)
-        print "Congrats, you moved all the files into %s" % direc
+        print ("Congrats, you moved all the files into %s" % direc)
         sys.exit()
     else:
-        print "You have chosen not to move the files to a new folder, goodbye."
+        print ("You have chosen not to move the files to a new folder, goodbye.")
         sys.exit()
