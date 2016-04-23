@@ -9,9 +9,10 @@ import sys
 import os
 import shutil
 
-#imports for dialogue boxes
-import Tkinter
-import tkFileDialog
+# imports for dialogue boxes
+import tkinter
+# from tkinter import filedialog
+from tkinter.filedialog import askdirectory
 
 # method for copying a file with shutil
 def copyFile(src, dest):
@@ -26,12 +27,14 @@ def copyFile(src, dest):
 
 # method to call a gui to select a directory
 # found at http://stackoverflow.com/questions/25282883/how-can-i-use-the-output-from-tkfiledialog-askdirectory-to-fill-a-tkinter-entry
-def askdirectory():
-    root = Tkinter.Tk()
+def askForDirectory():
+    # root = Tkinter.Tk()
+    root = tkinter.Tk()
     # withdraw() allows the window to dissapear 
     # found at https://www.daniweb.com/programming/software-development/threads/210657/open-directory-dialog-box
     root.withdraw()
-    dirname = tkFileDialog.askdirectory()
+    # dirname = tkFileDialog.askdirectory()
+    dirname = askdirectory()
     return dirname
 
 # /home/tanner/Desktop/firstFolder
@@ -40,7 +43,7 @@ print ("This script is meant for scrubbing files of a specified type and listing
 print ("It also allows you to copy the files after collecting them into a folder of your choice.")
 
 print ("Please enter a starting directory..")
-directory = askdirectory()
+directory = askForDirectory()
 #directory = raw_input()
 
 print ('For image files then press 1')
@@ -102,7 +105,7 @@ else:
     answer = input()
     if answer == 'y' or 'Y':
         print ('Specify directory path to move files into.')
-        direc = askdirectory()
+        direc = askForDirectory()
         #print 'Note: The folder you specify will be created on the Desktop.'
         #newDir = raw_input()
         # concatenates the specified folder with the path to the desktop
